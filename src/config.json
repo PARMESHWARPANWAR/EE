@@ -1,0 +1,24 @@
+{
+    "31337": {
+        "realEstate": {
+            "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+        },
+        "escrow": {
+            "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+        },
+        "nftContract": {
+            "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+        }
+    },
+    "11155111": {
+        "realEstate": {
+            "address": "0xd61B34F5188C173E6ffcd42dB6d61957c1136bdb"
+        },
+        "escrow": {
+            "address": "0x68B452476315ffbeae97c35B3E6A8214D1ffa32B"
+        },
+        "nftContract": {
+            "address": "0x68B452476315ffbeae97c35B3E6A8214D1ffa32B"
+        }
+    }
+}
