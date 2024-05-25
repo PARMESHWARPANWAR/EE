@@ -1,9 +1,8 @@
 import React from 'react'
 
 const Card = ({home,toggleModal}) => {
-    console.log('image card',home)
   return (
-    <div className="card"  onClick={() => toggleModal(home)}>
+    <div className="card overflow-hidden"  onClick={() => toggleModal(home)}>
     <div className="card__image">
       <img src={home.image} alt="Home" />
     </div>

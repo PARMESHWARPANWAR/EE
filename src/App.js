@@ -3,13 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Components
 import Navigation from './components/Navigation';
-import Search from './components/Search';
 
 // Config
-// import MyProperties from './components/MyProperties';
+import MyProperties from './components/MyProperties';
 // import MarketPlace from './components/MarketPlace';
 import { useRealEstateMarketplace } from './context/realStateContext';
-import MyProperties from './components/Test/MyProperties';
+// import MyProperties from './components/Test/MyProperties';
 import MarketPlace from './components/MarketPlace';
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
     <Router>
       <div>
         <Navigation />
-        <Search />
         <div className="min-h-screen bg-gray-100">
           <Routes>
           <Route path="/" element={<MarketPlace />} />
