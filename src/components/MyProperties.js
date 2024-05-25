@@ -4,7 +4,7 @@ import { useRealEstateMarketplace } from '../context/realStateContext';
 import Card from './Card';
 
 const MyProperties = () => {
-  const { account, provider, escrow, realEstate, userProperties, refresh } = useRealEstateMarketplace();
+  const { provider, escrow, userProperties, refresh } = useRealEstateMarketplace();
   const [selectedHome, setSelectedHome] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -20,7 +20,7 @@ const MyProperties = () => {
         <hr />
         <div className="cards">
           {userProperties.map((home,idx)=>(
-            <Card home={home} key={idx}/>
+            <Card home={home} toggleModal={toggleModal} key={idx}/>
           ))}
         </div>
       </div>

@@ -1,21 +1,19 @@
 import { ethers } from 'ethers';
-import logo from '../assets/logo2.png';
+import logo from '../assets/etherEstate.svg';
 import { useRealEstateMarketplace } from '../context/realStateContext';
 import { Link } from 'react-router-dom';
+import ConnectWallet from './ConnectWallet';
 
 // On listing and buying update data again, 
 // Not getting account on setAccount 
 
 const Navigation = () => {
-    const { account, setAccount,connectWallet } = useRealEstateMarketplace();
-
     return (
-        <nav>
+        <nav className='border-b-2'>
             <div className='nav__brand'>
                 <Link to="/">
-                    <img src={logo} alt="Logo" />
+                    <img src={logo} alt="Logo" className='size-20' />
                 </Link>
-
                 {/* <h1>Ether Estate</h1> */}
             </div>
             <ul className='nav__links'>
@@ -32,10 +30,10 @@ const Navigation = () => {
                         to="/user/properties"
                     // className="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md"
                     >
-                        My Properties
+                        Owned
                     </Link>
                 </li>
-                <li>
+                {/* <li>
                     <Link
                         to="/user/publish-property"
                     // className="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md"
@@ -58,25 +56,9 @@ const Navigation = () => {
                     >
                         Pending
                     </Link>
-                </li>
+                </li> */}
             </ul>
-
-            {account ? (
-                <button
-                    type="button"
-                    className='nav__connect'
-                >
-                    {account.slice(0, 6) + '...' + account.slice(38, 42)}
-                </button>
-            ) : (
-                <button
-                    type="button"
-                    className='nav__connect'
-                    onClick={connectWallet}
-                >
-                    Connect
-                </button>
-            )}
+            <ConnectWallet/>
         </nav>
     );
 }

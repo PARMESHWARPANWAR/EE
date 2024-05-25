@@ -26,11 +26,11 @@ const MarketPlace = () => {
         <div>
             <div>
                 <div className='cards__section'>
-                    <h1>Public Properties</h1>
+                    <span>Public Properties</span>
                     <hr />
                     <div className='cards'>
                         {publicProperties.map((home, idx) => (
-                           <Card home={home} key={idx}/>
+                           <Card home={home} toggleModal={toggleModal} key={idx}/>
                         ))}
                     </div>
                 </div>
