@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 // Not getting account on setAccount 
 
 const Navigation = () => {
-    const { account, setAccount,connectHandler } = useRealEstateMarketplace();
+    const { account, setAccount,connectWallet } = useRealEstateMarketplace();
 
     return (
         <nav>
@@ -72,7 +72,7 @@ const Navigation = () => {
                 <button
                     type="button"
                     className='nav__connect'
-                    onClick={connectHandler}
+                    onClick={connectWallet}
                 >
                     Connect
                 </button>

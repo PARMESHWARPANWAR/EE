@@ -29,10 +29,17 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
   const [network, setNetwork] = useState(null);
   const [account, setAccount] = useState(null);
 
-  const connectHandler = async () => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const account = ethers.utils.getAddress(accounts[0])
-    setAccount(account);
+  const connectWallet = async () => {
+    try{
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const account = ethers.utils.getAddress(accounts[0])
+      setAccount(account);
+    }catch(err){
+      console.log(err);
+      if(err?.message){console.log('error message=>',err?.message)}else{
+        console.log('Some thing wrong on auth please try again')
+      }
+    }
 }
 
   const loadBlockchainData = async () => {
@@ -71,8 +78,6 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
 
         const homeData = { ...metadata, id: i };
         const buyer = listing.buyer === ethers.constants.AddressZero ? null : listing.buyer
-
-        console.log('here is data', i, homeData, isListed, isPublic, seller, buyer, owner)
         
         if (isListed && isPublic) {
           homes.push({ ...homeData, isPublic, isListed, seller, buyer });
@@ -124,7 +129,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
     loadBlockchainData();
   };
 
-  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, refresh ,connectHandler};
+  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, refresh ,connectWallet};
 
   return (
     <RealEstateMarketplaceContext.Provider value={value}>

@@ -8,14 +8,10 @@ import BuyModal from './BuyModal';
 
 const MarketPlace = () => {
     const [homes, setHomes] = useState([])
-    const { provider, escrow, account, publicProperties } = useRealEstateMarketplace();
+    const { provider, escrow, account, publicProperties,connectWallet } = useRealEstateMarketplace();
     const [home, setHome] = useState({})
     const [toggle, setToggle] = useState(false);
 
-    const connectWallet = () => {
-        // Implement connect wallet logic here
-        console.log('implement to connect wallet')
-    }
     const toggleModal = (home) => {
         setHome(home)
         toggle ? setToggle(false) : setToggle(true);
