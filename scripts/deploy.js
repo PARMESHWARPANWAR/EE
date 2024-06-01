@@ -58,7 +58,6 @@ async function main() {
     let transaction = await realEstate.connect(seller).approve(escrow.address, i + 1)
     await transaction.wait()
   }
-
   // Listing properties...
   // let transaction = await escrow.connect(seller).list(1, buyer.address, tokens(20), tokens(10))
   // await transaction.wait()

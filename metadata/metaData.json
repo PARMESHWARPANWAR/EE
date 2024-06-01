@@ -150,7 +150,7 @@
         "attributes": [
             {
                 "trait_type": "Purchase Price",
-                "value": 18
+                "value": 1
             },
             {
                 "trait_type": "Type of Residence",
@@ -185,7 +185,7 @@
         "attributes": [
             {
                 "trait_type": "Purchase Price",
-                "value": 35
+                "value": 0.5
             },
             {
                 "trait_type": "Type of Residence",
@@ -220,7 +220,7 @@
         "attributes": [
             {
                 "trait_type": "Purchase Price",
-                "value": 22
+                "value": 1
             },
             {
                 "trait_type": "Type of Residence",
@@ -255,7 +255,7 @@
         "attributes": [
             {
                 "trait_type": "Purchase Price",
-                "value": 50
+                "value": 2
             },
             {
                 "trait_type": "Type of Residence",
@@ -290,7 +290,7 @@
         "attributes": [
             {
                 "trait_type": "Purchase Price",
-                "value": 28
+                "value": 0.2
             },
             {
                 "trait_type": "Type of Residence",
@@ -325,7 +325,7 @@
         "attributes": [
             {
                 "trait_type": "Purchase Price",
-                "value": 27
+                "value": 0.4
             },
             {
                 "trait_type": "Type of Residence",

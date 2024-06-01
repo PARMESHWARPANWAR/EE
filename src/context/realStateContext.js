@@ -61,18 +61,24 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
       const network = await provider.getNetwork();
       setNetwork(network);
 
+      
       const realEstateContract = new ethers.Contract(
         config[network.chainId].realEstate.address,
         RealEstateABI,
         provider // Use the provider directly for read-only operations
       );
+
+     
       setRealEstate(realEstateContract);
 
+     
       const escrowContract = new ethers.Contract(
         config[network.chainId].nftContract.address,
         NFTMarketPlaceABI,
         provider // Use the provider directly for read-only operations
       );
+
+      
       setEscrow(escrowContract);
 
       const totalSupply = await realEstateContract.totalSupply();
@@ -141,7 +147,6 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
     }
   };
 
-  console.log('city temp',tempOfCities)
   const getTempOfCity = async (city) => {
     setLoadingTemp(true)
     try{
