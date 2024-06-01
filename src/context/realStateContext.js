@@ -34,10 +34,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
   const [featching, setFeatching] = useState(false);
   const [connecting, setConnecting] = useState(false)
   const [loadingTemp, setLoadingTemp] = useState(false)
-  const [tempOfCities, setTempOfCities] = useState({
-    Jaipur: "🌫  +38°C",
-    Jodhpur: null
-  })
+  const [tempOfCities, setTempOfCities] = useState({})
 
   const connectWallet = async () => {
     setConnecting(true)
@@ -113,7 +110,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
   };
 
   const getTempOfCities = async () => {
-    setLoadingTemp(false)
+    setLoadingTemp(true)
     try {
       const weatherContract = new ethers.Contract(
         config[network.chainId].weatherContract.address,
@@ -123,27 +120,45 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
       setWeatherContract(weatherContract);
   
       const data = await weatherContract.listAllCities();
-      console.log('all cities', data);
   
       const tempOfCitiesData = {};
   
       for (const cityData of data) {
         const { sender, timestamp, name, temperature } = cityData;
-        console.log('temperature==>',temperature)
         if (temperature) {
           const weather = extractTemperatureString(temperature);
           tempOfCitiesData[name] = weather;
-          console.log(`${name} weather:`, weather,temperature);
         } else {
           tempOfCitiesData[name] = null;
         }
       }
   
       setTempOfCities(tempOfCitiesData);
+      setLoadingTemp(false)
     } catch (err) {
       console.log(err)
+      setLoadingTemp(false)
     }
   };
+
+  console.log('city temp',tempOfCities)
+  const getTempOfCity = async (city) => {
+    setLoadingTemp(true)
+    try{
+      const signer = await provider.getSigner()
+      //Temperatue
+      let transaction = await weatherContract.connect(signer).getTemperature(city)
+      await transaction.wait()
+
+      console.log('transaction conformed')
+      let cityData = await weatherContract.getCity(city);
+      console.log('citeDAta conformed',cityData)
+      getTempOfCities()
+      setLoadingTemp(false)
+    }catch{
+      setLoadingTemp(false)
+    }
+  }
 
   const fetchMetadata = async (uri) => {
     try {
@@ -165,7 +180,6 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
       getTempOfCities()
     }
   }, [provider, network])
-  console.log('all cit tem',tempOfCities)
 
   useEffect(() => {
     const handleAccountsChanged = async () => {
@@ -185,7 +199,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
     loadBlockchainData();
   };
 
-  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, featching, connecting, refresh, connectWallet };
+  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, featching, connecting, refresh, connectWallet,tempOfCities,loadingTemp,getTempOfCity };
 
   return (
     <RealEstateMarketplaceContext.Provider value={value}>
