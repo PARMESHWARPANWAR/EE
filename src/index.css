@@ -107,7 +107,6 @@ nav {
 /* -- HEADER -- */
 
 header {
-  background-image: url("./assets/houses.png");
   background-position: center;
   background-size: cover;
   min-height: 40vh;
@@ -369,7 +368,6 @@ header {
 .banner-container {
   position: relative;
   height: 300px; /* Adjust as needed */
-  background-image: url('./assets/houses.png'); /* Replace with your image path */
   background-size: cover;
   display: flex;
   flex-direction: column;

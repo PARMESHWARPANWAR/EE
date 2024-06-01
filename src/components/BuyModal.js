@@ -3,8 +3,7 @@ import closeIcon from '../assets/close.svg';
 import { ethers } from 'ethers';
 import ConnectWallet from './ConnectWallet';
 
-const BuyModal = ({ home, provider, escrow, toggleModal, account, connectWallet }) => {
-    console.log('home =>', home)
+const BuyModal = ({ home, provider, escrow, toggleModal, account }) => {
     const { id, name, image, attributes, address, buyer: currentBuyer, description, isPublic } = home;
     const [hasPurchased, setHasPurchased] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
