@@ -7,10 +7,8 @@ import config from '../config.json';
 import { extractTemperatureString } from '../utils/functions';
 
 
-// Create the context
 const RealEstateMarketplaceContext = createContext();
 
-// Custom hook to access the context
 export const useRealEstateMarketplace = () => {
   const context = useContext(RealEstateMarketplaceContext);
   if (!context) {
@@ -19,7 +17,6 @@ export const useRealEstateMarketplace = () => {
   return context;
 };
 
-// Create a provider component
 export const RealEstateMarketplaceProvider = ({ children }) => {
 
   const [userProperties, setUserProperties] = useState([]);
@@ -65,7 +62,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
       const realEstateContract = new ethers.Contract(
         config[network.chainId].realEstate.address,
         RealEstateABI,
-        provider // Use the provider directly for read-only operations
+        provider
       );
 
      
@@ -75,7 +72,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
       const escrowContract = new ethers.Contract(
         config[network.chainId].nftContract.address,
         NFTMarketPlaceABI,
-        provider // Use the provider directly for read-only operations
+        provider
       );
 
       
@@ -147,24 +144,6 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
     }
   };
 
-  const getTempOfCity = async (city) => {
-    setLoadingTemp(true)
-    try{
-      const signer = await provider.getSigner()
-      //Temperatue
-      let transaction = await weatherContract.connect(signer).getTemperature(city)
-      await transaction.wait()
-
-      console.log('transaction conformed')
-      let cityData = await weatherContract.getCity(city);
-      console.log('citeDAta conformed',cityData)
-      getTempOfCities()
-      setLoadingTemp(false)
-    }catch{
-      setLoadingTemp(false)
-    }
-  }
-
   const fetchMetadata = async (uri) => {
     try {
       const response = await fetch(uri);
@@ -204,7 +183,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
     loadBlockchainData();
   };
 
-  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, featching, connecting, refresh, connectWallet,tempOfCities,loadingTemp,getTempOfCity };
+  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, featching, connecting, refresh, connectWallet,tempOfCities,setTempOfCities,loadingTemp ,weatherContract};
 
   return (
     <RealEstateMarketplaceContext.Provider value={value}>
