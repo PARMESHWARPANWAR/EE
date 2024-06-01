@@ -13,6 +13,7 @@ contract NFTMarketplaceWithEscrow {
 // ===================================== PRIVATE =================================
     address private owner;
 
+
 // ===================================== MAPPING =================================
     mapping(uint256 => Listing) public listings;
     mapping(uint256 => mapping(address => bool)) public approvals;

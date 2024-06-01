@@ -6,7 +6,7 @@ import { tokens } from '../utils/token';
 import { useRealEstateMarketplace } from '../context/realStateContext';
 
 const Modal = ({ home, provider, toggleModal, escrow, refresh }) => {
-  const { account } = useRealEstateMarketplace();
+  const { account,realEstate } = useRealEstateMarketplace();
   const { id, name, image, address, attributes, description, isListed: currentIsListed, isPublic: currentIsPublic, seller, buyer: actualBuyer } = home;
   const [price, setPrice] = useState(tokens(0.5));
   const [escrowAmount, setEscrowAmount] = useState(tokens(0.2));
@@ -14,12 +14,18 @@ const Modal = ({ home, provider, toggleModal, escrow, refresh }) => {
   const [isListed, setIsListed] = useState(currentIsListed);
   const [isPublic, setIsPublic] = useState(currentIsPublic);
   const [isLoading, setIsLoading] = useState(false);
+  const [publicCheck,setPublicCheck] = useState(true)
 
   const listHandler = async () => {
     setIsLoading(true)
     try {
       const signer = await provider.getSigner();
-      const transaction = await escrow.connect(signer).listNFT(id, price, escrowAmount, false);
+
+      //Approve nft transfer
+      let transaction = await realEstate.connect(signer).approveForEscrow(id, escrow.address)
+      await transaction.wait()
+
+      transaction = await escrow.connect(signer).listNFT(id, price, escrowAmount, publicCheck);
       await transaction.wait();
       console.log('listHandler called transaction complete for ', id);
       setIsListed(true);

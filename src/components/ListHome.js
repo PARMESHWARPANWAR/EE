@@ -81,7 +81,12 @@ const ListHome = ({ home, provider, account, escrow, togglePop ,realEstate}) => 
 
     const listHandler = async () => {
         const signer = await provider.getSigner()
-        let transaction = await escrow.connect(signer).list(home.id, signer.address, tokens(10), tokens(5))
+        //Approve nft transfer
+        let transaction = await realEstate.connect(signer).approveForEscrow(home.id,escrow.address)
+        await transaction.wait()
+
+        //Approve nft List
+        transaction = await escrow.connect(signer).list(home.id, signer.address, tokens(10), tokens(5))
         await transaction.wait()
     }
     

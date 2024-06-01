@@ -15,10 +15,10 @@
     },
     "11155111": {
         "realEstate": {
-            "address": "0xBEdE42056114E292c9cfe871A80868DC0A98a18F"
+            "address":"0x246ef79D2A71F788826dea310C901614429640bB"
         },
         "nftContract": {
-            "address": "0xc29AaF4533fE046bE7A17d292842b000d3612224"
+            "address":"0x71BDa5b42542a84f2eD71F7995D9bdFb87687246"
         },
         "weatherContract":{
             "address":"0x9CE12959ce58014d901200783b90E8B3cDd4A66D"
