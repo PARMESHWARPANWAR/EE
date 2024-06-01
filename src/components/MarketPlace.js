@@ -5,17 +5,14 @@
 import React, { useState } from 'react'
 import { useRealEstateMarketplace } from '../context/realStateContext';
 import BuyModal from './BuyModal';
+import Card from './Card';
 
 const MarketPlace = () => {
     const [homes, setHomes] = useState([])
-    const { provider, escrow, account, publicProperties } = useRealEstateMarketplace();
+    const { provider, escrow, account, publicProperties,connectWallet } = useRealEstateMarketplace();
     const [home, setHome] = useState({})
     const [toggle, setToggle] = useState(false);
 
-    const connectWallet = () => {
-        // Implement connect wallet logic here
-        console.log('implement to connect wallet')
-    }
     const toggleModal = (home) => {
         setHome(home)
         toggle ? setToggle(false) : setToggle(true);
@@ -29,29 +26,15 @@ const MarketPlace = () => {
         <div>
             <div>
                 <div className='cards__section'>
-                    <h1>Public Properties</h1>
+                    <span>Public Properties</span>
                     <hr />
                     <div className='cards'>
-                        {publicProperties.map((home, index) => (
-                            <div className='card overflow-hidden' key={index} onClick={() => toggleModal(home)}>
-                                <div className='card__image'>
-                                    <img src={home.image} alt="Home"  />
-                                </div>
-                                <div className='card__info'>
-                                    <h4>{home.attributes[0].value} ETH</h4>
-                                    <p>
-                                        <strong>{home.attributes[2].value}</strong> bds |
-                                        <strong>{home.attributes[3].value}</strong> ba |
-                                        <strong>{home.attributes[4].value}</strong> sqft
-                                    </p>
-                                    <p>{home.address}</p>
-                                </div>
-                            </div>
+                        {publicProperties.map((home, idx) => (
+                           <Card home={home} toggleModal={toggleModal} key={idx}/>
                         ))}
                     </div>
                 </div>
             </div>
-            <h1>Owned</h1>
             {toggle && (
                 <BuyModal
                     home={home}

@@ -21,6 +21,48 @@
 		"type": "error"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_city",
+				"type": "string"
+			}
+		],
+		"name": "getTemperature",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "requestId",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "requestId",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes",
+				"name": "response",
+				"type": "bytes"
+			},
+			{
+				"internalType": "bytes",
+				"name": "err",
+				"type": "bytes"
+			}
+		],
+		"name": "handleOracleFulfillment",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "NoInlineSecrets",
 		"type": "error"
@@ -173,54 +215,12 @@
 						"type": "string"
 					}
 				],
-				"internalType": "struct Weather.CityStruct",
+				"internalType": "struct WeatherFunctions.CityStruct",
 				"name": "",
 				"type": "tuple"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_city",
-				"type": "string"
-			}
-		],
-		"name": "getTemperature",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "requestId",
-				"type": "bytes32"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "requestId",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "bytes",
-				"name": "response",
-				"type": "bytes"
-			},
-			{
-				"internalType": "bytes",
-				"name": "err",
-				"type": "bytes"
-			}
-		],
-		"name": "handleOracleFulfillment",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -328,7 +328,7 @@
 						"type": "string"
 					}
 				],
-				"internalType": "struct Weather.CityStruct[]",
+				"internalType": "struct WeatherFunctions.CityStruct[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -374,28 +374,9 @@
 						"type": "string"
 					}
 				],
-				"internalType": "struct Weather.CityStruct[]",
+				"internalType": "struct WeatherFunctions.CityStruct[]",
 				"name": "",
 				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "requestIds",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
 			}
 		],
 		"stateMutability": "view",
@@ -415,6 +396,25 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "requestIds",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
 			}
 		],
 		"stateMutability": "view",

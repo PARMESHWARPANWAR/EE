@@ -1,42 +1,35 @@
-import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Components
 import Navigation from './components/Navigation';
-import Search from './components/Search';
 
 // Config
-// import MyProperties from './components/MyProperties';
+import MyProperties from './components/MyProperties';
 // import MarketPlace from './components/MarketPlace';
-import { useRealEstateMarketplace } from './context/realStateContext';
-import MyProperties from './components/Test/MyProperties';
+// import MyProperties from './components/Test/MyProperties';
 import MarketPlace from './components/MarketPlace';
+import { useRealEstateMarketplace } from './context/realStateContext';
+import Loader from './components/Loader';
 
 function App() {
-  const { provider, escrow, account, publicProperties } = useRealEstateMarketplace();
-  const [home, setHome] = useState({})
-  const [toggle, setToggle] = useState(false);
-
-  const togglePop = (home) => {
-    setHome(home)
-    toggle ? setToggle(false) : setToggle(true);
-  }
-
+  const {featching } = useRealEstateMarketplace();
   return (
     <Router>
-      <div>
+      <div className='min-h-screen bg-gray-100'>
         <Navigation />
-        <Search />
-        <div className="min-h-screen bg-gray-100">
-          <Routes>
-          <Route path="/" element={<MarketPlace />} />
-            <Route path="/user/properties" element={<MyProperties />} />
-            <Route path="/user/publish-property" element={<PublishProperty />} />
-            <Route path="/user/approval-requests" element={<ApprovalRequests />} />
-            <Route path="/user/waiting-approval" element={<WaitingApproval />} />
-            <Route path="*" element={<MarketPlace />} />
-          </Routes>
-        </div>
+        {featching ? <Loader/> :
+          <div className="">
+            <Routes>
+              <Route path="/" element={<MarketPlace />} />
+              <Route path="/user/properties" element={<MyProperties />} />
+              <Route path="/user/publish-property" element={<PublishProperty />} />
+              <Route path="/user/approval-requests" element={<ApprovalRequests />} />
+              <Route path="/user/waiting-approval" element={<WaitingApproval />} />
+              <Route path="*" element={<MarketPlace />} />
+            </Routes>
+          </div>
+        }
+
       </div>
     </Router>
   );

@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import RealEstateABI from '../abis/RealEstate.json';
+import WeatherABI from '../abis/Weather.json'
 import NFTMarketPlaceABI from '../abis/NFTMarketPlace.json';
 import config from '../config.json';
+import { extractTemperatureString } from '../utils/functions';
 
 
 // Create the context
@@ -26,16 +28,32 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
   const [provider, setProvider] = useState(null);
   const [escrow, setEscrow] = useState(null);
   const [realEstate, setRealEstate] = useState(null);
+  const [weatherContract, setWeatherContract] = useState(null);
   const [network, setNetwork] = useState(null);
   const [account, setAccount] = useState(null);
+  const [featching, setFeatching] = useState(false);
+  const [connecting, setConnecting] = useState(false)
+  const [loadingTemp, setLoadingTemp] = useState(false)
+  const [tempOfCities, setTempOfCities] = useState({})
 
-  const connectHandler = async () => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const account = ethers.utils.getAddress(accounts[0])
-    setAccount(account);
-}
+  const connectWallet = async () => {
+    setConnecting(true)
+    try {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const account = ethers.utils.getAddress(accounts[0])
+      setAccount(account);
+      setConnecting(false)
+    } catch (err) {
+      console.log(err);
+      if (err?.message) { console.log('error message=>', err?.message) } else {
+        console.log('Some thing wrong on auth please try again')
+      }
+      setConnecting(false)
+    }
+  }
 
   const loadBlockchainData = async () => {
+    setFeatching(true)
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       setProvider(provider);
@@ -72,8 +90,6 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
         const homeData = { ...metadata, id: i };
         const buyer = listing.buyer === ethers.constants.AddressZero ? null : listing.buyer
 
-        console.log('here is data', i, homeData, isListed, isPublic, seller, buyer, owner)
-        
         if (isListed && isPublic) {
           homes.push({ ...homeData, isPublic, isListed, seller, buyer });
         }
@@ -86,10 +102,63 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
 
       setPublicProperties(homes);
       setUserProperties(ownedProperties);
+      setFeatching(false)
     } catch (error) {
       console.error('Error loading blockchain data:', error);
+      setFeatching(false)
     }
   };
+
+  const getTempOfCities = async () => {
+    setLoadingTemp(true)
+    try {
+      const weatherContract = new ethers.Contract(
+        config[network.chainId].weatherContract.address,
+        WeatherABI,
+        provider // Use the provider directly for read-only operations
+      );
+      setWeatherContract(weatherContract);
+  
+      const data = await weatherContract.listAllCities();
+  
+      const tempOfCitiesData = {};
+  
+      for (const cityData of data) {
+        const { sender, timestamp, name, temperature } = cityData;
+        if (temperature) {
+          const weather = extractTemperatureString(temperature);
+          tempOfCitiesData[name] = weather;
+        } else {
+          tempOfCitiesData[name] = null;
+        }
+      }
+  
+      setTempOfCities(tempOfCitiesData);
+      setLoadingTemp(false)
+    } catch (err) {
+      console.log(err)
+      setLoadingTemp(false)
+    }
+  };
+
+  console.log('city temp',tempOfCities)
+  const getTempOfCity = async (city) => {
+    setLoadingTemp(true)
+    try{
+      const signer = await provider.getSigner()
+      //Temperatue
+      let transaction = await weatherContract.connect(signer).getTemperature(city)
+      await transaction.wait()
+
+      console.log('transaction conformed')
+      let cityData = await weatherContract.getCity(city);
+      console.log('citeDAta conformed',cityData)
+      getTempOfCities()
+      setLoadingTemp(false)
+    }catch{
+      setLoadingTemp(false)
+    }
+  }
 
   const fetchMetadata = async (uri) => {
     try {
@@ -105,6 +174,12 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
   useEffect(() => {
     loadBlockchainData();
   }, [account]);
+
+  useEffect(() => {
+    if (provider && network) {
+      getTempOfCities()
+    }
+  }, [provider, network])
 
   useEffect(() => {
     const handleAccountsChanged = async () => {
@@ -124,7 +199,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
     loadBlockchainData();
   };
 
-  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, refresh ,connectHandler};
+  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, featching, connecting, refresh, connectWallet,tempOfCities,loadingTemp,getTempOfCity };
 
   return (
     <RealEstateMarketplaceContext.Provider value={value}>

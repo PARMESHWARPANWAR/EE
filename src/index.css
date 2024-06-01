@@ -174,11 +174,13 @@ header {
 .card {
   width: 350px;
   height: 275px;
-  /* border: 1px solid var(--clr-black); */
   margin: 10px auto;
   cursor: pointer;
   position: relative;
   transition: all 250ms ease;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  border-radius: 10px;
 }
 
 .card:hover {
