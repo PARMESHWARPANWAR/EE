@@ -68,7 +68,17 @@ const Card = ({ home, toggleModal }) => {
         )}
       </div>
       <div className="card__info">
+        <div>
         <h4>{home.attributes[0].value} ETH </h4>
+        {!loading && !loadingTemp && cityTemp && (
+          <button className="absolute top-2 right-2 bg-blue-900/70 text-white px-3 py-1 rounded-md text-sm" onClick={(e) => {
+            e.stopPropagation();
+            getTempOfCity(home.city);
+          }}>
+            Current Temperatue
+          </button>
+        )}
+        </div>
         <p>
           <strong>{home.attributes[2].value}</strong> bds |{' '}
           <strong>{home.attributes[3].value}</strong> ba |{' '}
