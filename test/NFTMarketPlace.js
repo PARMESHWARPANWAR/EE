@@ -94,3 +94,72 @@ describe("NFTMarketplaceWithEscrow", function () {
     expect(buyerBalanceAfter).to.be.closeTo(buyerBalanceBefore.sub(price), ethers.utils.parseEther("0.001")); // Adjust the tolerance as needed
   });
 });
+
+
+describe("SourceChainSender and DestChainReceiver", function () {
+  let SourceChainSender,
+    DestChainReceiver,
+    RealEstate,
+    NFTMarketplaceWithEscrow,
+    sourceChainSender,
+    destChainReceiver,
+    realEstate,
+    nftMarketplace,
+    owner,
+    seller,
+    buyer;
+
+  const tokenUrl = "https://ipfs.io/ipfs/QmQUozrHLAusXDxrvsESJ3PYB3rUeUuBAvVWw6nop2uu7c/1.png";
+  const tokenId = 1;
+  const price = ethers.utils.parseEther("1");
+  const escrowAmount = ethers.utils.parseEther("0.1");
+
+  beforeEach(async function () {
+    [owner, seller, buyer] = await ethers.getSigners();
+
+    // Deploy Real Estate
+    const RealEstateContract = await ethers.getContractFactory("RealEstate");
+    realEstate = await RealEstateContract.deploy();
+
+    // Deploy NFT Marketplace
+    const NFTMarketplaceContract = await ethers.getContractFactory("NFTMarketplaceWithEscrow");
+    nftMarketplace = await NFTMarketplaceContract.deploy(realEstate.address, owner.address);
+
+    // Deploy SourceChainSender
+    const SourceChainSenderContract = await ethers.getContractFactory("SourceChainSender");
+    sourceChainSender = await SourceChainSenderContract.deploy(realEstate.address, nftMarketplace.address);
+
+    // Deploy DestChainReceiver
+    const DestChainReceiverContract = await ethers.getContractFactory("DestChainReceiver");
+    destChainReceiver = await DestChainReceiverContract.deploy(nftMarketplace.address);
+
+    // Mint an NFT
+    await realEstate.connect(seller).mint(tokenUrl);
+    await realEstate.connect(seller).approve(nftMarketplace.address, tokenId);
+  });
+
+  it("Should list an NFT on the destination chain", async function () {
+    // Simulate sending the listing to the destination chain
+    const messageId = await sourceChainSender
+      .connect(seller)
+      .sendNFTListing(destChainReceiver.address, tokenId, price, escrowAmount, true);
+
+    // Check if the NFT is listed on the destination chain
+    const listing = await nftMarketplace.listings(tokenId);
+    expect(listing.seller).to.equal(seller.address);
+    expect(listing.price).to.equal(price);
+    expect(listing.escrowAmount).to.equal(escrowAmount);
+    expect(listing.isListed).to.be.equal(true);
+    expect(await nftMarketplace.isPublic(tokenId)).to.be.equal(true);
+  });
+
+  it("Should not allow listing if not the owner", async function () {
+    await expect(
+      sourceChainSender
+        .connect(buyer)
+        .sendNFTListing(destChainReceiver.address, tokenId, price, escrowAmount, true)
+    ).to.be.revertedWith("Only contract owner can call this method");
+  });
+
+  // Add more test cases as needed
+});

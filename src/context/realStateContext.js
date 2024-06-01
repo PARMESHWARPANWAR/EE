@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import RealEstateABI from '../abis/RealEstate.json';
+import WeatherABI from '../abis/Weather.json'
 import NFTMarketPlaceABI from '../abis/NFTMarketPlace.json';
 import config from '../config.json';
+import { extractTemperatureString } from '../utils/functions';
 
 
 // Create the context
@@ -26,26 +28,32 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
   const [provider, setProvider] = useState(null);
   const [escrow, setEscrow] = useState(null);
   const [realEstate, setRealEstate] = useState(null);
+  const [weatherContract, setWeatherContract] = useState(null);
   const [network, setNetwork] = useState(null);
   const [account, setAccount] = useState(null);
-  const [featching,setFeatching] = useState(false);
-  const [connecting,setConnecting] = useState(false)
+  const [featching, setFeatching] = useState(false);
+  const [connecting, setConnecting] = useState(false)
+  const [loadingTemp, setLoadingTemp] = useState(false)
+  const [tempOfCities, setTempOfCities] = useState({
+    Jaipur: "🌫  +38°C",
+    Jodhpur: null
+  })
 
   const connectWallet = async () => {
     setConnecting(true)
-    try{
+    try {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       const account = ethers.utils.getAddress(accounts[0])
       setAccount(account);
       setConnecting(false)
-    }catch(err){
+    } catch (err) {
       console.log(err);
-      if(err?.message){console.log('error message=>',err?.message)}else{
+      if (err?.message) { console.log('error message=>', err?.message) } else {
         console.log('Some thing wrong on auth please try again')
       }
       setConnecting(false)
     }
-}
+  }
 
   const loadBlockchainData = async () => {
     setFeatching(true)
@@ -84,7 +92,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
 
         const homeData = { ...metadata, id: i };
         const buyer = listing.buyer === ethers.constants.AddressZero ? null : listing.buyer
-        
+
         if (isListed && isPublic) {
           homes.push({ ...homeData, isPublic, isListed, seller, buyer });
         }
@@ -104,6 +112,39 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
     }
   };
 
+  const getTempOfCities = async () => {
+    setLoadingTemp(false)
+    try {
+      const weatherContract = new ethers.Contract(
+        config[network.chainId].weatherContract.address,
+        WeatherABI,
+        provider // Use the provider directly for read-only operations
+      );
+      setWeatherContract(weatherContract);
+  
+      const data = await weatherContract.listAllCities();
+      console.log('all cities', data);
+  
+      const tempOfCitiesData = {};
+  
+      for (const cityData of data) {
+        const { sender, timestamp, name, temperature } = cityData;
+        console.log('temperature==>',temperature)
+        if (temperature) {
+          const weather = extractTemperatureString(temperature);
+          tempOfCitiesData[name] = weather;
+          console.log(`${name} weather:`, weather,temperature);
+        } else {
+          tempOfCitiesData[name] = null;
+        }
+      }
+  
+      setTempOfCities(tempOfCitiesData);
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
   const fetchMetadata = async (uri) => {
     try {
       const response = await fetch(uri);
@@ -118,6 +159,13 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
   useEffect(() => {
     loadBlockchainData();
   }, [account]);
+
+  useEffect(() => {
+    if (provider && network) {
+      getTempOfCities()
+    }
+  }, [provider, network])
+  console.log('all cit tem',tempOfCities)
 
   useEffect(() => {
     const handleAccountsChanged = async () => {
@@ -137,7 +185,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
     loadBlockchainData();
   };
 
-  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties,featching,connecting, refresh ,connectWallet};
+  const value = { signer, account, userProperties, setAccount, escrow, provider, realEstate, network, publicProperties, featching, connecting, refresh, connectWallet };
 
   return (
     <RealEstateMarketplaceContext.Provider value={value}>
