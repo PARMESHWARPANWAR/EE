@@ -21,7 +21,7 @@ const Card = ({ home, toggleModal }) => {
         {!loadingTemp && !cityTemp && (
           <button className="absolute top-2 right-2 bg-blue-900/70 text-white px-3 py-1 rounded-md text-sm" onClick={(e) => {
             e.stopPropagation();
-            getTempOfCity(city);
+            getTempOfCity(home.city);
           }}>
             Get Temperature
           </button>
