@@ -1,0 +1,352 @@
+[
+    {
+        "name": "Luxury NYC Penthouse",
+        "address": "157 W 57th St APT 49B, New York, NY 10019",
+        "city": "New York",
+        "country": "USA",
+        "description": "Luxury Penthouse located in the heart of NYC",
+        "image": "https://ipfs.io/ipfs/QmQUozrHLAusXDxrvsESJ3PYB3rUeUuBAvVWw6nop2uu7c/1.png",
+        "id": "1",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 20
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Condo"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 2200
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2013
+            }
+        ]
+    },
+    {
+        "name": "Stylish Paris Apartment",
+        "address": "123 Rue de Rivoli, 75001 Paris",
+        "city": "Paris",
+        "country": "France",
+        "description": "Chic apartment in the heart of Paris",
+        "image": "https://example.com/paris_apartment.jpg",
+        "id": "2",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 15
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Apartment"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 1
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 1
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 800
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 1920
+            }
+        ]
+    },
+    {
+        "name": "Modern London Loft",
+        "address": "15 Hanbury St, Spitalfields, London E1 6QR",
+        "city": "London",
+        "country": "UK",
+        "description": "Contemporary loft in the vibrant area of Spitalfields",
+        "image": "https://example.com/london_loft.jpg",
+        "id": "3",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 25
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Loft"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 1800
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2008
+            }
+        ]
+    },
+    {
+        "name": "Sunny Barcelona Villa",
+        "address": "Carrer de la Marina, 125, 08013 Barcelona",
+        "city": "Barcelona",
+        "country": "Spain",
+        "description": "Bright villa with a pool near the beach",
+        "image": "https://example.com/barcelona_villa.jpg",
+        "id": "4",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 30
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Villa"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 4
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 3000
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 1995
+            }
+        ]
+    },
+    {
+        "name": "Tokyo Urban Studio",
+        "address": "1 Chome-17-9 Shinjuku, Shinjuku City, Tokyo 160-0022",
+        "city": "Tokyo",
+        "country": "Japan",
+        "description": "Compact studio apartment in the bustling area of Shinjuku",
+        "image": "https://example.com/tokyo_studio.jpg",
+        "id": "5",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 1
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Studio Apartment"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 1
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 1
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 500
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 1985
+            }
+        ]
+    },
+    {
+        "name": "Sydney Beach House",
+        "address": "123 Beachfront Avenue, Bondi Beach, NSW 2026",
+        "city": "Sydney",
+        "country": "Australia",
+        "description": "Spacious beachfront house with panoramic ocean views",
+        "image": "https://example.com/sydney_beach_house.jpg",
+        "id": "6",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 0.5
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "House"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 5
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 4
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 4000
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2000
+            }
+        ]
+    },
+    {
+        "name": "Berlin City Center Apartment",
+        "address": "Friedrichstraße 133, 10117 Berlin",
+        "city": "Berlin",
+        "country": "Germany",
+        "description": "Centrally located apartment in the heart of Berlin",
+        "image": "https://example.com/berlin_apartment.jpg",
+        "id": "7",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 1
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Apartment"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 1
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 1000
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 1960
+            }
+        ]
+    },
+    {
+        "name": "Dubai Luxury Villa",
+        "address": "Palm Jumeirah, Dubai, United Arab Emirates",
+        "city": "Dubai",
+        "country": "UAE",
+        "description": "Extravagant villa with stunning views of the Dubai skyline",
+        "image": "https://example.com/dubai_villa.jpg",
+        "id": "8",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 2
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Villa"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 6
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 7
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 6000
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2010
+            }
+        ]
+    },
+    {
+        "name": "Rome Historic Townhouse",
+        "address": "Via dei Fori Imperiali, 00186 Roma RM, Italy",
+        "city": "Rome",
+        "country": "Italy",
+        "description": "Historical townhouse overlooking the ancient Roman Forum",
+        "image": "https://example.com/rome_townhouse.jpg",
+        "id": "9",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 0.2
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Townhouse"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 2500
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 1800
+            }
+        ]
+    },
+    {
+        "name": "Toronto Lakeside Condo",
+        "address": "12 Queens Quay W, Toronto, ON M5J 2V5, Canada",
+        "city": "Toronto",
+        "country": "Canada",
+        "description": "Contemporary condo with stunning views of Lake Ontario",
+        "image": "https://example.com/toronto_condo.jpg",
+        "id": "10",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 0.4
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Condo"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 1500
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2015
+            }
+        ]
+    }
+]
