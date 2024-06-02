@@ -93,7 +93,7 @@ export const RealEstateMarketplaceProvider = ({ children }) => {
         const homeData = { ...metadata, id: i };
         const buyer = listing.buyer === ethers.constants.AddressZero ? null : listing.buyer
 
-        if (isListed && isPublic) {
+        if (isListed && isPublic && seller !== account) {
           homes.push({ ...homeData, isPublic, isListed, seller, buyer });
         }
 

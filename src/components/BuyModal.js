@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import closeIcon from '../assets/close.svg';
 import { ethers } from 'ethers';
 import ConnectWallet from './ConnectWallet';
+import { toast } from 'sonner'
 
 const BuyModal = ({ home, provider, escrow, toggleModal, account }) => {
     const { id, name, image, attributes, address, buyer: currentBuyer, description, isPublic } = home;
@@ -13,7 +14,7 @@ const BuyModal = ({ home, provider, escrow, toggleModal, account }) => {
         setIsLoading(true)
         try {
             if (!account) {
-                alert('Please connect your wallet first.');
+                toast.info('Please connect your wallet first.')
                 setIsLoading(false)
                 return;
             }
@@ -43,7 +44,7 @@ const BuyModal = ({ home, provider, escrow, toggleModal, account }) => {
 
             // Check if the user has sufficient balance
             if (balance.lt(totalAmount)) {
-                alert(`Insufficient balance to buy the home. Your balance is ${balanceInEth} ETH, but you need ${totalAmountInEth} ETH to cover the price (${totalRequiredAmountInEth} ETH), escrow amount, and gas fees (${gasCostInEth} ETH).`);
+                toast.info(`Insufficient balance to buy the home. Your balance is ${balanceInEth} ETH, but you need ${totalAmountInEth} ETH to cover the price (${totalRequiredAmountInEth} ETH), escrow amount, and gas fees (${gasCostInEth} ETH).`);
                 setIsLoading(false)
                 return;
             }
@@ -59,13 +60,9 @@ const BuyModal = ({ home, provider, escrow, toggleModal, account }) => {
         } catch (err) {
             console.error('Error buying home:', err);
             console.log('message==>', err?.message);
-            alert('An error occurred while buying the home. Please try again.');
+            toast.info('An error occurred while buying the home. Please try again.');
             setIsLoading(false)
         }
-    };
-
-    const finalizeHandler = () => {
-        // Implement finalize logic here
     };
 
     useEffect(() => {
@@ -105,7 +102,7 @@ const BuyModal = ({ home, provider, escrow, toggleModal, account }) => {
                                     <ConnectWallet/>
                                 )
                             ) : (
-                                <button className="home__buy" onClick={finalizeHandler} disabled={isPublic}>
+                                <button className="home__buy" disabled={isPublic}>
                                     Finalize
                                 </button>
                             )}</>}

@@ -348,5 +348,356 @@
                 "value": 2015
             }
         ]
+    },
+    {
+        "name": "San Francisco Bay Area Mansion",
+        "address": "45 Broadway, San Francisco, CA 94111",
+        "city": "San Francisco",
+        "country": "USA",
+        "description": "Magnificent mansion with a view of the Golden Gate Bridge",
+        "image": "https://example.com/sf_mansion.jpg",
+        "id": "11",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 35
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Mansion"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 5
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 6
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 5000
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2005
+            }
+        ]
+    },
+    {
+        "name": "Cape Town Seaside Villa",
+        "address": "123 Clifton Road, Cape Town, 8005",
+        "city": "Cape Town",
+        "country": "South Africa",
+        "description": "Luxurious villa with breathtaking ocean views",
+        "image": "https://example.com/cape_town_villa.jpg",
+        "id": "12",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 22
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Villa"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 4
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 5
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 4500
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2012
+            }
+        ]
+    },
+    {
+        "name": "Rio de Janeiro Penthouse",
+        "address": "Av. Vieira Souto, 110, Ipanema, Rio de Janeiro",
+        "city": "Rio de Janeiro",
+        "country": "Brazil",
+        "description": "Stunning penthouse overlooking Ipanema Beach",
+        "image": "https://example.com/rio_penthouse.jpg",
+        "id": "13",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 18
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Penthouse"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 2800
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2015
+            }
+        ]
+    },
+    {
+        "name": "Hong Kong Harborfront Condo",
+        "address": "18 Salisbury Road, Tsim Sha Tsui, Hong Kong",
+        "city": "Hong Kong",
+        "country": "China",
+        "description": "Exclusive condo with panoramic views of Victoria Harbor",
+        "image": "https://example.com/hk_condo.jpg",
+        "id": "14",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 27
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Condo"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 4
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 2300
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2007
+            }
+        ]
+    },
+    {
+        "name": "Moscow City Penthouse",
+        "address": "Presnenskaya Naberezhnaya, 8, Moscow, 123100",
+        "city": "Moscow",
+        "country": "Russia",
+        "description": "Luxury penthouse in the heart of Moscow City",
+        "image": "https://example.com/moscow_penthouse.jpg",
+        "id": "15",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 19
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Penthouse"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 2500
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2014
+            }
+        ]
+    },
+    {
+        "name": "Miami Beachfront Condo",
+        "address": "450 Alton Road, Miami Beach, FL 33139",
+        "city": "Miami",
+        "country": "USA",
+        "description": "Elegant condo with stunning views of Miami Beach",
+        "image": "https://example.com/miami_condo.jpg",
+        "id": "16",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 16
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Condo"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 2000
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2009
+            }
+        ]
+    },
+    {
+        "name": "Lisbon Riverside Apartment",
+        "address": "123 Rua Augusta, 1100-048 Lisbon",
+        "city": "Lisbon",
+        "country": "Portugal",
+        "description": "Charming apartment with views of the Tagus River",
+        "image": "https://example.com/lisbon_apartment.jpg",
+        "id": "17",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 14
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Apartment"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 2
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 1200
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2016
+            }
+        ]
+    },
+    {
+        "name": "Venice Grand Canal Palazzo",
+        "address": "123 Canal Grande, 30124 Venice",
+        "city": "Venice",
+        "country": "Italy",
+        "description": "Historic palazzo with private access to the Grand Canal",
+        "image": "https://example.com/venice_palazzo.jpg",
+        "id": "18",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 50
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Palazzo"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 10
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 12
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 10000
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 1700
+            }
+        ]
+    },
+    {
+        "name": "Singapore Skyline Condo",
+        "address": "123 Orchard Road, Singapore 238883",
+        "city": "Singapore",
+        "country": "Singapore",
+        "description": "Luxurious condo with panoramic views of the city skyline",
+        "image": "https://example.com/singapore_condo.jpg",
+        "id": "19",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 29
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Condo"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 4
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 4
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 3500
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2018
+            }
+        ]
+    },
+    {
+        "name": "Mexico City Penthouse",
+        "address": "123 Paseo de la Reforma, 06500 Mexico City",
+        "city": "Mexico City",
+        "country": "Mexico",
+        "description": "Modern penthouse with views of Chapultepec Park",
+        "image": "https://example.com/mexico_penthouse.jpg",
+        "id": "20",
+        "attributes": [
+            {
+                "trait_type": "Purchase Price",
+                "value": 12
+            },
+            {
+                "trait_type": "Type of Residence",
+                "value": "Penthouse"
+            },
+            {
+                "trait_type": "Bed Rooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Bathrooms",
+                "value": 3
+            },
+            {
+                "trait_type": "Square Feet",
+                "value": 2700
+            },
+            {
+                "trait_type": "Year Built",
+                "value": 2017
+            }
+        ]
     }
 ]
+
