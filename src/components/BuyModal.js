@@ -44,7 +44,7 @@ const BuyModal = ({ home, provider, escrow, toggleModal, account }) => {
 
             // Check if the user has sufficient balance
             if (balance.lt(totalAmount)) {
-                toast.info(`Insufficient balance to buy the home. Your balance is ${balanceInEth} ETH, but you need ${totalAmountInEth} ETH to cover the price (${totalRequiredAmountInEth} ETH), escrow amount, and gas fees (${gasCostInEth} ETH).`);
+                toast.info(`Insufficient balance to buy the home. Your balance is ${balanceInEth} AVAX, but you need ${totalAmountInEth} AVAX to cover the price (${totalRequiredAmountInEth} AVAX), escrow amount, and gas fees (${gasCostInEth} AVAX).`);
                 setIsLoading(false)
                 return;
             }

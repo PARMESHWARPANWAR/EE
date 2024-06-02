@@ -1,8 +1,8 @@
 # Real Estate NFT DApp
 https://etherestate.vercel.app/
 
-Subscription Id :
-Link : 
+Subscription Id : 6225
+Link : https://functions.chain.link/fuji/6225
 
 ## Technology Stack & Tools
 
