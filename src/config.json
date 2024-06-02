@@ -15,13 +15,24 @@
     },
     "11155111": {
         "realEstate": {
-            "address":"0x246ef79D2A71F788826dea310C901614429640bB"
+            "address":"0x135F06cE08111e880Ff351CBFd57BE1f7D854A49"
         },
         "nftContract": {
-            "address":"0x71BDa5b42542a84f2eD71F7995D9bdFb87687246"
+            "address":"0x26630D1Aafc2647f4d92Ca696BbC7BfF57ca1773"
         },
         "weatherContract":{
             "address":"0x9CE12959ce58014d901200783b90E8B3cDd4A66D"
+        }
+    },
+    "ava": {
+        "realEstate": {
+            "address":"0x532dDdcdE56cc56C4B3Fe2Fb30a80Fb7a14f4D20"
+        },
+        "nftContract": {
+            "address":"0x28038B29F03d6bDe0C61485B1914E62b09b6218B"
+        },
+        "weatherContract":{
+            "address":"0x720841EdDD08f9164d8a95D2e5981D842514e86E"
         }
     }
 }
