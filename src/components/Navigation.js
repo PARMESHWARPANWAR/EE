@@ -33,6 +33,14 @@ const Navigation = () => {
                         Owned
                     </Link>
                 </li>
+                <li>
+                    <Link
+                        to="/user/on-chain"
+                    // className="text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md"
+                    >
+                        Admin
+                    </Link>
+                </li>
                 {/* <li>
                     <Link
                         to="/user/publish-property"
